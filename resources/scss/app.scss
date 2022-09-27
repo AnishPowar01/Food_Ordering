@@ -5,6 +5,7 @@ body{
     font-family: 'Lato',sans-serif;
     --webkit-font-smoothing:antialiased;
     color: $dark;
+    height: 4000px;
 }
 nav li:last-child a
 {
@@ -25,4 +26,20 @@ nav li a {
 section.hero
 {
     background: $secondary;
+}
+.size
+{
+    background: $secondary;
+}
+.add-to-cart
+{
+    border: 2px solid $primary;
+    color: $primary;
+    transition: $smooth;
+    &:hover{
+        background-color: $primary;
+        border-color: $pure;
+        color: $pure;
+
+    }
 }
