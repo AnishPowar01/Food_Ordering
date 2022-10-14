@@ -16,26 +16,16 @@ app.set('views',path.join(__dirname, '/resources/views'))
 app.set('view engine','ejs')
 
 
+require('./routes/web')(app)
+
+
+
 //Assests Kidhar rakhe he
 
 app.use(express.static('public'))
 
-app.get('/',(req,res)=>{
-    res.render('home')
 
-})
 
-app.get('/cart',(req,res) =>{
-  
-    res.render('customers/cart')
-})
-
-app.get('/login',(req,res)=>{
-    res.render('Auth/login')
-})
-app.get('/register',(req,res)=>{
-    res.render('Auth/register')
-})
 
 
 app.listen(PORT,()=>{
