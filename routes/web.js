@@ -1,21 +1,19 @@
-function initRoutes(app)
-{
-    app.get('/',(req,res)=>{
-        res.render('home')
-    
-    })
 
-    app.get('/cart',(req,res) =>{
-  
-        res.render('customers/cart')
-    })
+const authController = require('../app/http/controllers/authController')
+const cartController = require('../app/http/controllers/customers/cartController')
+const homeController =  require('../app/http/controllers/homeController')
+
+function initRoutes(app)
+
+{
+    app.get('/',homeController().index)
+    // (req,res)=>{
+    //     res.render('home')
     
-    app.get('/login',(req,res)=>{
-        res.render('Auth/login')
-    })
-    app.get('/register',(req,res)=>{
-        res.render('Auth/register')
-    })
+    // }
+    app.get('/cart',cartController().index)
+    app.get('/login',authController().login)
+    app.get('/register',authController().register)
 }
 
 

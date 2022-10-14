@@ -16,7 +16,7 @@ app.set('views',path.join(__dirname, '/resources/views'))
 app.set('view engine','ejs')
 
 
-require('./routes/web')(app)
+require('./routes/web')(app)   //init routes rerturn here
 
 
 
