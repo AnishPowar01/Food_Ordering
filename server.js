@@ -43,6 +43,12 @@ app.use(session({
 app.use(flash())
 
 
+//Assests Kidhar rakhe he
+
+app.use(express.static('public'))
+app.use(express.json())
+
+
 // set template engine
 
 app.use(expressLayout)
@@ -53,15 +59,6 @@ app.set('view engine','ejs')
 
 
 require('./routes/web')(app)   //init routes rerturn here
-
-
-
-//Assests Kidhar rakhe he
-
-app.use(express.static('public'))
-
-
-
 
 
 app.listen(PORT,()=>{
