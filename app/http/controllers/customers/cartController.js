@@ -1,56 +1,42 @@
-const { json } = require("express")
+const { json } = require("express");
 
-function cartController()
-{
-    //factory functions// pattern of programming -> object production...
+function cartController() {
+  //factory functions// pattern of programming -> object production...
+  return {
+    //CRUD controller
+    //index method for read
 
-    return {
-        //CRUD controller
-        //index method for read
+    index(req, res) {
+      res.render("customers/cart");
+    },
 
-        index(req,res)
-        {
-            res.render('customers/cart')
-        },
+    update(req, res) {
+      if (!req.session.cart) {
+        req.session.cart = {
+          items: {},
+          totalQty: 0,
+          totalPrice: 0,
+        };
+      }
+      let cart = req.session.cart;
 
-        update(req,res)
-        {
-            if(req.session.cart){
-                req.session.cart = {
-                    items :{},
-                    totalQty:0,
-                    totalPrice:0
-                }
-            }
-            let cart = req.session.cart
+      if (!cart.items[req.body._id]) {
+        cart.items[req.body._id] = {
+          item: req.body,
+          qty: 1,
+        };
 
-            // console.log(req.body)
-             
-            if(!cart.items[req.body._id])
-            {
-                 cart.items[req.body._id] = {
+        cart.totalQty = cart.totalQty + 1;
+        cart.totalPrice = cart.totalPrice + req.body.price;
+      } else {
+        cart.items[req.body._id].qty = cart.items[req.body._id].qty + 1;
+        cart.totalQty = cart.totalQty + 1;
+        cart.totalPrice = cart.totalPrice + req.body.price;
+      }
 
-                    item: req.body,
-                    qty: 1
-
-                 }
-
-                 cart.totalQty = cart.totalQty + 1
-                 cart.totalPrice = cart.totalPrice + req.body.price
-            }
-            else
-            {
-                cart.items[req.body._id].qty = cart.items[req.body._id].qty + 1
-                cart.totalQty = cart.totalQty + 1
-                cart.totalPrice = cart.totalPrice + req.body.price
-            }
-
-            return res.json({totalQty : req.session.cart.totalQty})
-        }
-
-    }
-
+      return res.json({ totalQty: req.session.cart.totalQty });
+    },
+  };
 }
 
-
-module.exports = cartController
+module.exports = cartController;
