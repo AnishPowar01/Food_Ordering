@@ -1,11 +1,13 @@
 @import './variables';
+@import '~noty/src/noty.scss';
+@import '~noty/src/themes/mint.scss';
 
 
 body{
     font-family: 'Lato',sans-serif;
     --webkit-font-smoothing:antialiased;
     color: $dark;
-    height: 4000px;
+    height: 100%;
 }
 nav li:last-child a
 {
@@ -42,6 +44,10 @@ section.hero
         color: $pure;
 
     }
+    &:focus
+    {
+        outline: none;
+    }
 }
 .btn-prim
 {
@@ -75,6 +81,10 @@ section.login
 section.register
 {
     background: $secondary;
-    min-height: calc(100vh - 86px);
+    min-height: calc(100% - 86px);
+}
+.noty_theme__mint{
+    border-radius:50px!important;
+    padding-left:8px!important;
 }
 

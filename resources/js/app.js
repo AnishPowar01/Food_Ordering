@@ -1,25 +1,42 @@
 // for client side code
-import axios from 'axios'
+import axios from "axios";
+import Noty from "noty";
 
-let addToCart = document.querySelectorAll('.add-to-cart')
+let addToCart = document.querySelectorAll(".add-to-cart");
+let cartCounter = document.querySelector("#Cartcounter");
 
-function updateCart(pizza)
-{
-    //server pe request dal do bhai
-    //ajax call....using library -> axios
+function updateCart(pizza) {
+  //server pe request dal do bhai
+  //ajax call....using library -> axios
 
-    axios.post('/update-cart',pizza).then(res => {
-        console.log(res)
+  axios
+    .post("/update-cart", pizza)
+    .then((res) => {
+      // console.log(res);
+      new Noty({
+        //   theme: "mint",
+        type: "success",
+        timeout: 1000,
+        text: "Added to Cart",
+        progressBar: false,
+      }).show();
+      cartCounter.innerText = res.data.totalQty;
     })
+    .catch((err) => {
+      new Noty({
+        //   theme: "mint",
+        type: "error",
+        timeout: 1000,
+        text: "Something Went Wrong",
+        progressBar: false,
+      }).show();
+    });
 }
 
 addToCart.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-
-       
-        let pizza = JSON.parse( btn.dataset.pizza)
-        // console.log(pizza)
-        updateCart(pizza)
-        
-    })
-})
+  btn.addEventListener("click", (e) => {
+    let pizza = JSON.parse(btn.dataset.pizza);
+    // console.log(pizza)
+    updateCart(pizza);
+  });
+});

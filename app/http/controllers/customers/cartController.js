@@ -7,6 +7,7 @@ function cartController() {
     //index method for read
 
     index(req, res) {
+      
       res.render("customers/cart");
     },
 
