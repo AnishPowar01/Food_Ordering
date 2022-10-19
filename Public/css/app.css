@@ -282,6 +282,74 @@ body {
   height: 100%;
 }
 
+.static-txt {
+  color: rgb(0, 0, 0);
+  font-size: 60px;
+  font-weight: 400;
+}
+
+.wrapper .dyanamic-txts {
+  margin-left: 15px;
+  line-height: 90px;
+  height: 90px;
+  overflow: hidden;
+}
+
+.dyanamic-txts li {
+  list-style: none;
+  color: #FE5F1E;
+  font-size: 60px;
+  font-weight: 500;
+  top: 0;
+  position: relative;
+  -webkit-animation: slide 8s steps(4) infinite;
+          animation: slide 8s steps(4) infinite;
+}
+
+@-webkit-keyframes slide {
+  100% {
+    top: -360px;
+  }
+}
+
+@keyframes slide {
+  100% {
+    top: -360px;
+  }
+}
+.dyanamic-txts li {
+  position: relative;
+}
+
+.dyanamic-txts li ::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #F8F8F8;
+  border-left: 2px solid #FE5F1E;
+  -webkit-animation: typing 2s steps(5) infinite;
+          animation: typing 2s steps(5) infinite;
+}
+
+@-webkit-keyframes typing {
+  40%, 60% {
+    left: calc(100% + 30px);
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes typing {
+  40%, 60% {
+    left: calc(100% + 30px);
+  }
+  100% {
+    left: 0;
+  }
+}
 nav li:last-child a {
   background: #FE5F1E;
 }

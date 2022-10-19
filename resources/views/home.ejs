@@ -1,8 +1,20 @@
 <section class="hero py-16 px-12">
     <div class="container mx-auto flex items-center justify-between">
         <div class="w-1/2">
-            <h6 class="text-lg"><em>Are you hungry?</em></h6>
-            <h1 class="text-6xl font-bold">Don't Wait !</h1>
+            <div class="wrapper flex">
+                <div class="static-txt"> Are You</div>
+                <ul class="dyanamic-txts">
+                    <li><span>Hungry?</span></li>
+                    <li><span>Bored?</span></li>
+                    <li><span>Happy?</span></li>
+                    <li><span>Lonely?</span></li>
+                </ul>
+            </div>
+
+            <!-- <h6 class="text-lg"><em>Are you hungry?</em></h6>
+            <h1 class="text-6xl font-bold">Don't Wait !</h1> -->
+
+            <!-- <h5 class="text-lg">Something hot. Something tasty.</h5> -->
             <button class="btn-prim px-6 py-2 rounded-full text-white font-bold mt-4">Order Now</button>
         </div>
         <div class="w-1/2 px-4">
@@ -28,7 +40,8 @@
                         <span class="font-bold text-lg">
                             ₹<%=pizza.price%>
                         </span>
-                        <button data-pizza="<%= JSON.stringify(pizza) %>" class="add-to-cart py-1 px-6 rounded-full flex items-center text-bold">
+                        <button data-pizza="<%= JSON.stringify(pizza) %>"
+                            class="add-to-cart py-1 px-6 rounded-full flex items-center text-bold">
                             <span>+</span>
                             <span class="ml-4">Add</span>
                         </button>
