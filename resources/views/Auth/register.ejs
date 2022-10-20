@@ -11,48 +11,69 @@
                     Google</span>
             </button> -->
         </div>
-        <form action="" class="my-10">
-            <div class="flex flex-col space-y-5">
-                <label for="username">
-                    <p class="font-medium text-slate-700 pb-2">Username</p>
-                    <input id="username" name="username" type="text"
-                        class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                        placeholder="Enter username">
-                </label>
-                <label for="email">
-                    <p class="font-medium text-slate-700 pb-2">Email address</p>
-                    <input id="email" name="email" type="email"
-                        class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                        placeholder="Enter email address">
-                </label>
-                <label for="password">
-                    <p class="font-medium text-slate-700 pb-2">Password</p>
-                    <input id="password" name="password" type="password"
-                        class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                        placeholder="Enter your password">
-                </label>
-                <div class="flex flex-row justify-between">
+        <form action="/register" method="post" class="my-10">
+            <% if(messages.error) { %>
+                <span class="text-red-500 text-sm">
+                    <%= messages.error %>
+                </span>
 
-                </div>
-                <button
-                    class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
-                    <span>Sign Up</span>
-                    <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                <% } %>
 
-                </button>
-                <p class="text-center">Already have account? <a href="/login"
-                        class="text-indigo-600 font-medium inline-flex space-x-1 items-center"><span>Login
-                        </span><span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg></span></a></p>
-            </div>
+                    <div class="flex flex-col space-y-5">
+                        <label for="username">
+                            <p class="font-medium text-slate-700 pb-2">Username</p>
+                            <input id="username" name="username" type="text" value="<%=messages.username%>"
+                                class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                placeholder="Enter username">
+                        </label>
+                        <label for="email">
+                            <p class="font-medium text-slate-700 pb-2">Email address</p>
+                            <input id="email" name="email" type="email" value="<%= messages.email%>"
+                                class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                placeholder="Enter email address">
+                        </label>
+                        <label for="password">
+                            <p class="font-medium text-slate-700 pb-2">Password</p>
+                            <input id="password" name="password" type="password"
+                                class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                                placeholder="Enter your password">
+                        </label>
+                        <div class="flex flex-row justify-between">
+
+                        </div>
+                        <button type="submit"
+                            class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+                            <span>Sign Up</span>
+                            <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+
+                        </button>
+                        <p class="text-center">Already have account? <a href="/login"
+                                class="text-indigo-600 font-medium inline-flex space-x-1 items-center"><span>Login
+                                </span><span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg></span></a></p>
+                    </div>
         </form>
     </div>
 
 
 </section>
+
+<!-- for registration we had written the code in web.js ->app.post
+, int authcontroller
+we have wriiten the logic to check if email is exist or not ,, if exist then throw error that email already taken,
+validated the input ..check if the input feild is empty or not
+
+then we converted the input password into hash and store it into database
+
+in user. js  we have created the schema for user
+
+
+in register.ejs ... we have open the ejs template and accept the error messages send by flash by using messsages method..
+check in values field we are sendng the data back to frontend even if user doest not provided all informations
+-->
