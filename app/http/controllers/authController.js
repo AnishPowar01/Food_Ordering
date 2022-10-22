@@ -6,6 +6,9 @@ const passport = require("passport");
 
 function authController() {
   //factory functions// pattern of programming -> object production...
+  const _getRedirectUrl = (req) => {
+    return req.user.role === "admin" ? "/admin/orders" : "/customer/orders";
+  };
 
   return {
     //CRUD controller
@@ -14,7 +17,15 @@ function authController() {
     login(req, res) {
       res.render("Auth/login");
     },
+
     postLogin(req, res, next) {
+      const { email, password } = req.body;
+
+      // Validate request
+      if (!email || !password) {
+        req.flash("error", "All fields are required");
+        return res.redirect("/login");
+      }
       passport.authenticate("local", (err, user, info) => {
         if (err) {
           req.flash("error", info.message);
@@ -26,13 +37,15 @@ function authController() {
           return res.redirect("/login");
         }
 
-        req.logIn(user, () => {
+        req.logIn(user, (err) => {
           if (err) {
             req.flash("error", info.message);
             return next(err);
           }
 
-          return res.redirect("/");
+          // req.session.isLoggedIn = true;
+
+          return res.redirect(_getRedirectUrl(req));
         });
       })(req, res, next);
     },

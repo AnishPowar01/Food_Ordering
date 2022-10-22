@@ -34,22 +34,33 @@
                     <span class="text-lg font-bold">Total Amount:</span>
                     <span class="amount text-2xl font-bold ml-2">₹ <%=session.cart.totalPrice%></span>
                 </div>
+                <% if(user) { %>
 
-                <div>
-                    <form action="" class="mt-12">
-                        <input class="border border-gray-400 p-2 w-1/2 mb-4" type="text" name="" id=""
-                            placeholder="Phone Number">
-                        <input class="border border-gray-400 p-2 w-1/2" type="text" name="" id="" placeholder="Address">
+                    <div>
+                        <form action="/orders" method="post" class="mt-12">
+                            <input class="border border-gray-400 p-2 w-1/2 mb-4" type="text" name="phone" id=""
+                                placeholder="Phone Number">
+                            <input class="border border-gray-400 p-2 w-1/2" type="text" name="address" id=""
+                                placeholder="Address">
 
-                        <div>
-                            <button class="btn-prim px-6 py-2 rounded-full text-white font-bold mt-4">Order Now</button>
-                        </div>
-                    </form>
-                </div>
+                            <div>
+                                <!-- <button class="btn-prim px-6 py-2 rounded-full text-white font-bold mt-4"
+                                    type="submit">Order
+                                    Now</button> -->
+                                <input type="submit" value="Order Now"
+                                    class="btn-prim px-6 py-2 rounded-full text-white font-bold mt-4">
+                            </div>
+                        </form>
+                    </div>
 
-                <!-- <a href="/login"
-                class="inline-block cursor-pointer px-6 btn-prim  py-2 rounded-full text-white font-bold mt-4">Login to
-                Continue</a> -->
+                    <%} else { %>
+
+                        <a href="/login"
+                            class="inline-block cursor-pointer px-6 btn-prim  py-2 rounded-full text-white font-bold mt-4">Login
+                            to
+                            Continue</a>
+
+                        <% } %>
 
             </div>
         </div>

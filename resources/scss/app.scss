@@ -94,6 +94,15 @@ section.hero
 {
     background: $secondary;
 }
+.btn-prim
+{
+    background: $primary;
+    transition: $smooth;
+    &:hover
+    {
+        background:$primary-hover;
+    }
+}
 .add-to-cart
 {
     border: 2px solid $primary;
@@ -110,15 +119,7 @@ section.hero
         outline: none;
     }
 }
-.btn-prim
-{
-    background: $primary;
-    transition: $smooth;
-    &:hover
-    {
-        background:$primary-hover;
-    }
-}
+
 
 section.cart
 {
@@ -133,7 +134,7 @@ section.cart
 section.login
 {
     background: $secondary;
-    min-height: calc(100vh - 86px);
+    // min-height: calc(100vh - 86px);
     a
     {
         color: $primary;
@@ -142,10 +143,24 @@ section.login
 section.register
 {
     background: $secondary;
-    min-height: calc(100% - 86px);
+    // min-height: calc(100% - 86px);
 }
 .noty_theme__mint{
     border-radius:50px!important;
     padding-left:8px!important;
 }
+input[type=button],
+input[type=submit] {
+  background-color: $primary;
+//   border: none;
+//   color: #fff;
+//   padding: 15px 30px;
+//   text-decoration: none;
+//   margin: 4px 2px;
+//   cursor: pointer;
+}
 
+a.link
+{
+    color: $primary;
+}

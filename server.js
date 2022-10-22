@@ -34,6 +34,7 @@ app.use(
   session({
     secret: process.env.COOKIE_SECRET,
     resave: true,
+    // store: mongoStore,
     store: MongoDbStore.create({
       mongoUrl: "mongodb://127.0.0.1/food",
     }),

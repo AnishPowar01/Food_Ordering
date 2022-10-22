@@ -372,6 +372,14 @@ section.hero {
   background: #F8F8F8;
 }
 
+.btn-prim {
+  background: #FE5F1E;
+  transition: all 0.3s ease-in-out;
+}
+.btn-prim:hover {
+  background: #b23301;
+}
+
 .add-to-cart {
   border: 2px solid #FE5F1E;
   color: #FE5F1E;
@@ -386,14 +394,6 @@ section.hero {
   outline: none;
 }
 
-.btn-prim {
-  background: #FE5F1E;
-  transition: all 0.3s ease-in-out;
-}
-.btn-prim:hover {
-  background: #b23301;
-}
-
 section.cart {
   background: #F8F8F8;
 }
@@ -403,7 +403,6 @@ section.cart .amount {
 
 section.login {
   background: #F8F8F8;
-  min-height: calc(100vh - 86px);
 }
 section.login a {
   color: #FE5F1E;
@@ -411,10 +410,18 @@ section.login a {
 
 section.register {
   background: #F8F8F8;
-  min-height: calc(100% - 86px);
 }
 
 .noty_theme__mint {
   border-radius: 50px !important;
   padding-left: 8px !important;
+}
+
+input[type=button],
+input[type=submit] {
+  background-color: #FE5F1E;
+}
+
+a.link {
+  color: #FE5F1E;
 }
