@@ -63,8 +63,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var noty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! noty */ "./node_modules/noty/lib/noty.js");
 /* harmony import */ var noty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(noty__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _admin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./admin */ "./resources/js/admin.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _admin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./admin */ "./resources/js/admin.js");
 // for client side code
+
 
 
 
@@ -111,7 +114,37 @@ if (alertMsg) {
   }, 2000);
 }
 
-(0,_admin__WEBPACK_IMPORTED_MODULE_2__.initAdmin)();
+(0,_admin__WEBPACK_IMPORTED_MODULE_3__.initAdmin)(); // for dynamic single order page .. ..change order status initiated by admin
+
+var statuses = document.querySelectorAll(".status_line"); // console.log(statuses);
+
+var hiddenInput = document.querySelector("#hiddenInput");
+var order = hiddenInput ? hiddenInput.value : null;
+order = JSON.parse(order);
+var time = document.createElement("small"); // console.log(order);
+
+function updateStatus(order) {
+  var stepCompleted = true;
+  statuses.forEach(function (status) {
+    var dataStat = status.dataset.status;
+
+    if (stepCompleted) {
+      status.classList.add("step-completed");
+    }
+
+    if (dataStat === order.status) {
+      stepCompleted = false;
+      time.innerText = moment__WEBPACK_IMPORTED_MODULE_2___default()(order.updatedAt).format("hh:mm A");
+      status.appendChild(time);
+
+      if (status.nextElementSibling) {
+        status.nextElementSibling.classList.add("current-step");
+      }
+    }
+  });
+}
+
+updateStatus(order);
 
 /***/ }),
 

@@ -7,14 +7,15 @@
                 <h6 class="bg-white py-1 rounded-full px-4 text-green-600 text-sm">
                     <%= order._id%>
                 </h6>
+                <input id="hiddenInput" type="hidden" value="<%=JSON.stringify(order)%>">
             </div>
 
             <ul>
-                <li class="status_line text-xl pb-16"><span>Order Placed</span></li>
-                <li class="status_line text-xl pb-16"><span>Order Confirmation</span></li>
-                <li class="status_line text-xl pb-16"><span>Preparation</span></li>
-                <li class="status_line text-xl pb-16"><span>Out For deliver </span></li>
-                <li class="status_line text-xl"><span>Complete</span></li>
+                <li class="status_line text-xl pb-16" data-status="order_placed"><span>Order Placed</span></li>
+                <li class="status_line text-xl pb-16" data-status="confirmed"><span>Order Confirmation</span></li>
+                <li class="status_line text-xl pb-16" data-status="prepared"><span>Preparation</span></li>
+                <li class="status_line text-xl pb-16" data-status="delivered"><span>Out For deliver </span></li>
+                <li class="status_line text-xl" data-status="completed"><span>Complete</span></li>
             </ul>
 
         </div>
