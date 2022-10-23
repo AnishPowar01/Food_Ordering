@@ -53,8 +53,6 @@ if (alertMsg) {
   }, 2000);
 }
 
-initAdmin();
-
 // for dynamic single order page .. ..change order status initiated by admin
 
 let statuses = document.querySelectorAll(".status_line");
@@ -70,6 +68,11 @@ let time = document.createElement("small");
 // console.log(order);
 
 function updateStatus(order) {
+  statuses.forEach((status) => {
+    status.classList.remove("step-completed");
+    status.classList.remove("current-step");
+  });
+
   let stepCompleted = true;
 
   statuses.forEach((status) => {
@@ -90,3 +93,40 @@ function updateStatus(order) {
 }
 
 updateStatus(order);
+
+//Socket Client side
+
+let socket = io();
+
+if (order) {
+  socket.emit("join", `order_${order._id}`);
+}
+
+//Join bhai ham order page pe aa gaye ye lo order id iske nam ki room bana do join karo baba
+
+//For Admin
+
+let adminAreaPath = window.location.pathname;
+console.log(adminAreaPath);
+
+if (adminAreaPath.includes("admin")) {
+  initAdmin(socket);
+
+  socket.emit("join", "adminRoom");
+}
+
+//For Client
+socket.on("orderUpdated", (data) => {
+  const updatedOrder = { ...order };
+  updatedOrder.updatedAt = moment().format();
+  updatedOrder.status = data.status;
+  updateStatus(updatedOrder);
+  new Noty({
+    //   theme: "mint",
+    type: "success",
+    timeout: 1000,
+    text: "Order Updated ",
+    progressBar: false,
+  }).show();
+  // console.log(data);
+});
