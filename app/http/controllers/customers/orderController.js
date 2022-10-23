@@ -42,6 +42,17 @@ function orderController() {
       res.render("customers/orders", { orders: orders, moment: moment });
       //   console.log(orders);
     },
+
+    async show(req, res) {
+      const order = await Order.findById(req.params.id);
+      //user authorised or not check here re => only see own order ...
+      if (req.user._id.toString() === order.customerId.toString()) {
+        //check log in user id ,,in mongo db id is object so we don't compare id directly...convert it into string first
+        return res.render("customers/singleOrder", { order });
+      }
+
+      return res.redirect("/");
+    },
   };
 }
 
